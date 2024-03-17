@@ -1,10 +1,15 @@
 package br.com.leocustodio.date;
 
+import java.lang.System.Logger.Level;
+import java.text.DateFormat;
+import java.text.Format;
+import java.time.DayOfWeek;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.Period;
 import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 
 public class DateTime {
     public static void main(String[] args) {
@@ -58,21 +63,47 @@ public class DateTime {
         System.out.println("The difference between 1988-08-27 and current date is " + diffPeriod.getYears() + " years " + diffPeriod.getMonths() +  " months and " + diffPeriod.getDays() + " days." );
         System.out.println();
 
+
+
+        //Intermediate exercises list
         System.out.println();
         System.out.println("--------------------------------------------");
-        //Intermediate exercises list
         System.out.println("INTERMEDIATE EXERCISES LIST");
         System.out.println("--------------------------------------------");
         System.out.println();
+        
+        DateTimeFormatter format1 = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        System.out.println("Converting current date format to dd/MM/yyyy: " + format1.format(nowDate));
+        System.out.println();
 
+        nextBusinessDay();
 
-
-
-
-            
     }
+
+
+    //Metod next business day
     
+    static void nextBusinessDay(){
+
+        LocalDate businessDate = LocalDate.parse("1988-08-26");
+        int days = 0;
+
+        if (businessDate.getDayOfWeek() == DayOfWeek.FRIDAY){
+            days = 3;
+        }else if (businessDate.getDayOfWeek() == DayOfWeek.SATURDAY){
+            days = 2;
+        }else {
+            days = 1;
+        }
+
+        LocalDate nextBusinessDate = businessDate.plusDays(days);
+        System.out.println("Current date is: " + businessDate + " (" + businessDate.getDayOfWeek() 
+        + ") and the next business day is " + nextBusinessDate +  " (" 
+        + nextBusinessDate.getDayOfWeek() + ").");
+    }
 
 
+
+    
 }
     
