@@ -6,13 +6,13 @@ public enum OrderStatus {
     SHIPPED(2),
     DELIVERED(3);
 
-    final private int valor;
+    final private int value;
 
-    OrderStatus(int valor){
-        this.valor = valor;
+    OrderStatus(int value){
+        this.value = value;
     }
 
-    public int getValor() {
-        return valor;
+    public int getValue() {
+        return value;
     }
 }
