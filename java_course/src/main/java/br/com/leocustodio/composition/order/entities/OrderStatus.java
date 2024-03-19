@@ -1,4 +1,4 @@
-package br.com.leocustodio.composition;
+package br.com.leocustodio.composition.order.entities;
 
 public enum OrderStatus {
     PENDING_PAYMENT,

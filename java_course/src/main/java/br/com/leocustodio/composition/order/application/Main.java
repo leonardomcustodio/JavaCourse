@@ -1,5 +1,6 @@
-package br.com.leocustodio.composition;
+package br.com.leocustodio.composition.order.application;
 
+import br.com.leocustodio.composition.order.entities.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -14,7 +15,7 @@ public class Main {
         DateTimeFormatter dtf1 = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         Client client;
 
-        //Creating client
+        //Create client
         System.out.println("ENTER CLIENT DATA");
         System.out.print("Name: ");
         String name = sc.nextLine();
@@ -24,15 +25,13 @@ public class Main {
         LocalDate birthDateString = LocalDate.from(dtf1.parse(sc.nextLine()));
         client = new Client(name, email, birthDateString);
 
-        //Order status
+        //Create order
         System.out.println("Enter order data: ");
         System.out.print("Status: ");
         OrderStatus status = OrderStatus.valueOf(sc.nextLine());
-
-        //Creating order
         Order order = new Order(LocalDateTime.now(), status, client);
 
-        //Creating items
+        //Create items
         System.out.print("How many items to this order? ");
         int numItems = sc.nextInt();
         for (int i = 0; i < numItems; i++) {
@@ -46,7 +45,6 @@ public class Main {
             System.out.print("Quantity: ");
             int prodQuantity = sc.nextInt();
 
-            //Creating product
             Product product = new Product(prodName, prodPrice);
 
             //Creating orderItem and add to order list
@@ -54,7 +52,6 @@ public class Main {
             order.addItem(item);
         }
 
-        //Print order
         System.out.println();
         System.out.println(order);
 
