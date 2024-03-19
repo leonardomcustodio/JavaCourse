@@ -59,22 +59,12 @@ public class Order {
     }
 
 
-//    public static List<> addItem(){
-//        Scanner sc = new Scanner(System.in);
-//        System.out.print("Product name: ");
-//        String prodName = sc.nextLine();
-//        System.out.print("Product price: ");
-//        double prodPrice = sc.nextDouble();
-//        sc.nextLine();
-//        System.out.print("Quantity: ");
-//        int prodQuantity = sc.nextInt();
-//        Product prod = new Product(prodName, prodPrice);
-//        //OrderItem orderAux = new OrderItem(prodQuantity, prod);
-//        //listOrderItem.add(orderAux);
-//    }
-
     public Double totalOrder(){
-        return totalOrder;
+        double sum = 0.0;
+        for (OrderItem it : items){
+            sum += it.subTotal();
+        }
+        return sum;
     }
 
     @Override
@@ -86,15 +76,13 @@ public class Order {
         sb.append("Order status: ").append(status).append("\n");
         sb.append(client);
         sb.append("\n");
-        //sb.append("Cliente: ").append(client.getName()).append(" (").append(dtf2.format(client.getBirthDate())).append(") ").append(client.getEmail()).append("\n");
         sb.append("Order items: ").append("\n");
         for (OrderItem item : items){
             sb.append(item.toString());
             sb.append("\n");
-            totalOrder += item.subTotal();
         }
         sb.append("TOTAL ORDER: $");
-        sb.append(String.format("%.2f", totalOrder));
+        sb.append(String.format("%.2f", totalOrder()));
         return sb.toString();
     }
 }

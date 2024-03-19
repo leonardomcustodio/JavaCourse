@@ -3,8 +3,6 @@ package br.com.leocustodio.composition;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Locale;
 import java.util.Scanner;
 
@@ -13,24 +11,28 @@ public class Main {
 
         Locale.setDefault(Locale.US);
         Scanner sc = new Scanner(System.in);
-       // DateTimeFormatter dtf1 = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        DateTimeFormatter dtf1 = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         Client client;
-        List<OrderItem> listOrderItem = new ArrayList<>();
-        Order order;
 
+        //Creating client
         System.out.println("ENTER CLIENT DATA");
         System.out.print("Name: ");
         String name = sc.nextLine();
         System.out.print("Email: ");
         String email = sc.nextLine();
-        System.out.print("Birth date (yyyy-MM-dd): ");
-        String birthDateString = sc.nextLine();
-        LocalDate birthDate = LocalDate.parse(birthDateString);
-        client = new Client(name, email, birthDate);
+        System.out.print("Birth date (DD/MM/YYYY): ");
+        LocalDate birthDateString = LocalDate.from(dtf1.parse(sc.nextLine()));
+        client = new Client(name, email, birthDateString);
+
+        //Order status
         System.out.println("Enter order data: ");
         System.out.print("Status: ");
-        String status = sc.nextLine();
+        OrderStatus status = OrderStatus.valueOf(sc.nextLine());
 
+        //Creating order
+        Order order = new Order(LocalDateTime.now(), status, client);
+
+        //Creating items
         System.out.print("How many items to this order? ");
         int numItems = sc.nextInt();
         for (int i = 0; i < numItems; i++) {
@@ -43,45 +45,20 @@ public class Main {
             sc.nextLine();
             System.out.print("Quantity: ");
             int prodQuantity = sc.nextInt();
-            Product prod = new Product(prodName, prodPrice);
-            OrderItem orderAux = new OrderItem(prodQuantity, prodPrice, prod);
-            listOrderItem.add(orderAux);
+
+            //Creating product
+            Product product = new Product(prodName, prodPrice);
+
+            //Creating orderItem and add to order list
+            OrderItem item = new OrderItem(prodQuantity, prodPrice, product);
+            order.addItem(item);
         }
 
-        order = new Order(LocalDateTime.now(), OrderStatus.valueOf(status), client, listOrderItem);
+        //Print order
         System.out.println();
         System.out.println(order);
 
-        //Adding more items
-//        System.out.println();
-//        System.out.println("Do you want to add one more product (s/n): ");
-//        char choice;
-//        choice = sc.next().charAt(0);
-//        while (choice == 's'){
-//            sc.nextLine();
-//            System.out.println("Enter new item data");
-//            listOrderItem.add(Order.addItem());
-//            System.out.println("Do you want to add one more product (s/n): ");
-//            choice = sc.next().charAt(0);
-//
-//        }
-//        System.out.println();
-//        System.out.println(order);
-
-
-
         sc.close();
-        
-
-
-
-
-
-
-
-
-
-
 
     }
 }
