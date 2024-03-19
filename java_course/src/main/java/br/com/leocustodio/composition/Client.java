@@ -1,11 +1,14 @@
 package br.com.leocustodio.composition;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class Client {
     private String name;
     private String email;
     LocalDate birthDate;
+
+    DateTimeFormatter dtf1 = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
     public Client(){
 
@@ -39,5 +42,10 @@ public class Client {
 
     public void setBirthDate(LocalDate birthDate) {
         this.birthDate = birthDate;
+    }
+
+    @Override
+    public String toString(){
+        return "Client: " + getName() + " (" + dtf1.format(getBirthDate()) + ") " + getEmail();
     }
 }
