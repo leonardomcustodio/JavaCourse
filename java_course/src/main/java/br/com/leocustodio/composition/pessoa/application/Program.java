@@ -26,7 +26,6 @@ public class Program {
 
         System.out.println(person);
 
-
-
+        sc.close();
     }
 }
