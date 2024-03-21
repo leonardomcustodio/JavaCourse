@@ -39,4 +39,12 @@ public class Product {
     public void setQuantity(Integer quantity) {
         this.quantity = quantity;
     }
+
+    public double subTotal(){
+        return quantity * price;
+    }
+
+    public String toString(){
+        return "Name: " + name + ", Quantity: " + quantity + ", Price: $" + String.format("%.2f", price) + ", SUBTOTAL: $" + String.format("%.2f", subTotal()) ;
+    }
 }
