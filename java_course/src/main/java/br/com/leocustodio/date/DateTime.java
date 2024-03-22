@@ -1,8 +1,5 @@
 package br.com.leocustodio.date;
 
-import java.lang.System.Logger.Level;
-import java.text.DateFormat;
-import java.text.Format;
 import java.time.DayOfWeek;
 import java.time.Instant;
 import java.time.LocalDate;

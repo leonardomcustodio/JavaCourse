@@ -11,6 +11,7 @@ public class Program {
 
         Scanner sc = new Scanner(System.in);
 
+        @SuppressWarnings("unused")
         ShoppingCart cart = new ShoppingCart();
 
         System.out.println("-----------------");

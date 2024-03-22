@@ -15,10 +15,6 @@ public class ShoppingCart {
         product.add(prod);
     }
 
-    public void removeProduct(Product product){
-        this.product.remove(product);
-    }
-
     public static Double cartTotal(){
         double sum = 0.0;
         for(Product prod : product){

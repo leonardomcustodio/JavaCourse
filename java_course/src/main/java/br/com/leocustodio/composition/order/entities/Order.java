@@ -8,7 +8,6 @@ import java.util.List;
 public class Order {
     private LocalDateTime moment;
     private OrderStatus status;
-    private Double totalOrder = 0.0;
 
     private Client client;
     private static List<OrderItem> items = new ArrayList<OrderItem>();
